@@ -1,0 +1,33 @@
+groups:
+    group1:
+      users: ["engine","ci"]
+      policy:
+          resources: ["*"]
+          actions: ["*"]
+      user_login: false
+    group2:
+      users: ["John_Doe","Aboubacar_Maina"]
+      policy:
+          resources: ["*"]
+          actions: ["*"]
+      user_login: true
+
+roles:
+  roleA:
+    policy:
+      Version: "2012-10-17"
+      Statement:
+        - Action: "iam:*"
+          Effect: "Deny"
+          Resource: "*"
+        - Action: "*"
+          Effect: "Allow"
+          Resource: "*"
+  roleB:
+    policy:
+      Version: "2012-10-17"
+      Statement:
+        - Action: "sts:AssumeRole"
+          Effect: "Allow"
+          Resource: "arn:aws:iam::1111111111:role/roleC"
+
